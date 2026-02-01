@@ -22,7 +22,7 @@ CREATE TABLE town
     name VARCHAR(45) NOT NULL,
     province_id INT NOT NULL,
     FOREIGN KEY (province_id) REFERENCES province(province_id)
-)
+);
 
 CREATE TABLE customer
 (
@@ -33,7 +33,7 @@ CREATE TABLE customer
     zip_code VARCHAR(45) NOT NULL ,
     town_id INT NOT NULL,
     FOREIGN KEY (town_id) REFERENCES town(town_id)
-)
+);
 
 CREATE TABLE store
 (
@@ -42,7 +42,7 @@ CREATE TABLE store
     zip_code VARCHAR(45),
     town_id INT NOT NULL,
     FOREIGN KEY (town_id) REFERENCES town(town_id)
-)
+);
 
 CREATE TABLE worker
 (
@@ -54,39 +54,43 @@ CREATE TABLE worker
     worker_type ENUM('cooker', 'delivery') NOT NULL,
     store_id INT NOT NULL ,
     FOREIGN KEY (store_id) REFERENCES store(store_id)
-)
+);
 
-CREATE TABLE order
+CREATE TABLE user_order
 (
-    order_id INT PRIMARY KEY,
+    user_order_id INT PRIMARY KEY,
     customer_id INT NOT NULL,
     date_time_order DATETIME NOT NULL,
     total_price DECIMAL(5,2) NOT NULL,
     shipping_method ENUM('delivery', 'at_store'),
     worker_id INT,
-    FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
-)
-
-CREATE TABLE order_products
-(
-    order_products_id INT PRIMARY KEY,
-    quantity INT NOT NULL,
-    order_id INT NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES order(order_id)
-)
+    store_id INT NOT NULL,
+    FOREIGN KEY (store_id) REFERENCES store(store_id),
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+    FOREIGN KEY (worker_id) REFERENCES worker(worker_id)
+);
 
 CREATE TABLE product
 (
     product_id INT PRIMARY KEY,
     name VARCHAR(45) NOT NULL,
-    description VARCHAR(45) NOT NULL,
+    description VARCHAR(255) NOT NULL,
     type ENUM('burguer', 'pizza', 'drink') NOT NULL,
     price DECIMAL(4,2) NOT NULL,
     image VARCHAR(100),
     category_id INT,
-    order_products_id INT NOT NULL,
-    FOREIGN KEY (order_products_id) REFERENCES order_products(order_id)
-)
+    FOREIGN KEY (category_id) REFERENCES category(category_id)
+);
+
+CREATE TABLE order_products
+(
+    order_products_id INT PRIMARY KEY,
+    quantity INT NOT NULL,
+    user_order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES product(product_id),
+    FOREIGN KEY (user_order_id) REFERENCES user_order(user_order_id)
+);
 
 
 
