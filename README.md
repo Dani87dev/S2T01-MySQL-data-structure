@@ -11,25 +11,31 @@ The challenge was to design a web-based ordering system with the following speci
 - **Geographic Data**: Towns and Provinces are stored in separate tables to ensure data normalization.
 - **Customer Management**: Stores unique identifiers, addresses, and contact information.
 - **Order Logic**: Manages both home delivery and in-store pickup, tracking total prices and specific products selected.
-- **Product Hierarchy**: Categorization of pizzas, burgers, and drinks. Pizzas belong to specific categories that can be updated over time.
-- **Store & Staff**: Orders are assigned to a specific store. Employees are categorized as either cooks or delivery drivers, with specific tracking for delivery times and personnel.
+- **Product Hierarchy**: Categorization of pizzas, burgers, and drinks.
+- **Store & Staff**: Orders are assigned to a specific store, tracking cooks and delivery drivers.
 
+---
 
+## 📂 Project Components
+
+- **EER Diagram**: A visual representation of the database schema showing all entities, attributes, and relationships.
+- **Database Schema**: A SQL script containing all the CREATE TABLE statements and relational constraints to build the database from scratch.
+- **Data Population**: A dedicated SQL script with sample records to fill the database and test its functionality.
+- **Docker Compose**: A configuration file included to easily deploy the database environment in a containerized MySQL instance.
 
 ---
 
 ## 🛠 Technologies
 - **MySQL** (Relational Database Management System)
 - **SQL Language** (DDL & DML)
-- **Database Normalization**
+- **Docker & Docker Compose**
 - **Git & GitHub**
-
-## 📂 Project Structure
-- `delivery_ddbb_schema.sql`: Contains the complete database structure and relationships.
-- `inserts.sql`: Includes sample records for testing (customers, products, workers, and orders).
 
 ---
 
-## 🚀 Prerequisites
-- MySQL Server 8.0+ or MariaDB.
-- A database client like MySQL Workbench, DBeaver, or terminal access.
+## 📋 Prerequisites
+- MySQL Server or a Docker environment.
+- A SQL client to connect and browse the data (e.g., MySQL Workbench or DBeaver).
+
+### Clone the repository
+git clone https://github.com/Dani87dev/S2T01-MySQL-data-structure.git
