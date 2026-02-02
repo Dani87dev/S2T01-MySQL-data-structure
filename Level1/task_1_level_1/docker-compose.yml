@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_optica
+    restart: always
+    environment:
+      # Credencials que m'has demanat
+      MYSQL_ROOT_PASSWORD: admin
+      # Nom exacte del teu script
+      MYSQL_DATABASE: optical_store
+    ports:
+      - "3306:3306"
+    volumes:
+      # Carrega els teus .sql de la carpeta mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d
+      - optica_data:/var/lib/mysql
+
+volumes:
+  optica_data:
