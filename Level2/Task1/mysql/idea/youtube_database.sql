@@ -6,14 +6,13 @@ USE
 CREATE TABLE user
 (
     user_id       INT PRIMARY KEY AUTO_INCREMENT,
-    email         VARCHAR(45)                          NOT NULL,
-    username      VARCHAR(45)                          NOT NULL,
-    pasword       VARCHAR(20)                          NOT NULL,
-    date_of_birth DATE                                 NOT NULL,
-    gender        ENUM ('male', 'female', 'other')     NOT NULL,
-    country       VARCHAR(45)                          NOT NULL,
-    zip_code      VARCHAR(45)                          NOT NULL,
-    status        ENUM ('public', 'hidden', 'private') NOT NULL
+    email         VARCHAR(45)                      NOT NULL,
+    username      VARCHAR(45)                      NOT NULL,
+    password      VARCHAR(20)                      NOT NULL,
+    date_of_birth DATE                             NOT NULL,
+    gender        ENUM ('male', 'female', 'other') NOT NULL,
+    country       VARCHAR(45)                      NOT NULL,
+    zip_code      VARCHAR(45)                      NOT NULL
 );
 
 CREATE TABLE tag
@@ -24,19 +23,17 @@ CREATE TABLE tag
 
 CREATE TABLE video
 (
-    video_id     INT PRIMARY KEY AUTO_INCREMENT,
-    title        VARCHAR(45)  NOT NULL,
-    description  VARCHAR(255),
-    max_size     INT          NOT NULL,
-    file_name    VARCHAR(255) NOT NULL,
-    length       TIME         NOT NULL,
-    THUMBNAIL    VARCHAR(255) NOT NULL,
-    views        INT,
-    likes        INT,
-    dislikes     INT,
-    STATE        ENUM ('public', 'hide', 'private'),
-    user_id      INT          NOT NULL,
-    published_at DATETIME     NOT NULL,
+    video_id       INT PRIMARY KEY AUTO_INCREMENT,
+    title          VARCHAR(45)  NOT NULL,
+    description    VARCHAR(255),
+    max_size       INT          NOT NULL,
+    file_name      VARCHAR(255) NOT NULL,
+    length         TIME         NOT NULL,
+    THUMBNAIL      VARCHAR(255) NOT NULL,
+    views          INT,
+    STATE          ENUM ('public', 'hide', 'private'),
+    user_id        INT          NOT NULL,
+    published_at   DATETIME     NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (user_id)
 );
 
@@ -63,6 +60,7 @@ CREATE TABLE video_likes
 CREATE TABLE channel
 (
     channel_id  INT PRIMARY KEY AUTO_INCREMENT,
+    name        VARCHAR(45)  NOT NULL,
     description VARCHAR(255) NOT NULL,
     created_at  DATETIME     NOT NULL,
     user_id     INT          NOT NULL,
@@ -85,8 +83,6 @@ CREATE TABLE comment
     posted_at      DATETIME     NOT NULL,
     user_id        INT          NOT NULL,
     video_id       INT          NOT NULL,
-    likes_count    INT,
-    dislikes_count INT,
     FOREIGN KEY (user_id) REFERENCES user (user_id),
     FOREIGN KEY (video_id) REFERENCES video (video_id)
 );
