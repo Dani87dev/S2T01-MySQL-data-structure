@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_wetube
+    restart: always
+    environment:
+
+      MYSQL_ROOT_PASSWORD: admin
+
+      MYSQL_DATABASE: wetube
+    ports:
+      - "3306:3306"
+    volumes:
+
+      - ./mysql/init:/docker-entrypoint-initdb.d
+      - wetube:/var/lib/mysql
+
+volumes:
+  delivery_data:
