@@ -51,7 +51,7 @@ CREATE TABLE worker
     surname VARCHAR(45) NOT NULL ,
     nif VARCHAR(15) NOT NULL ,
     phone_number BIGINT NOT NULL ,
-    worker_type ENUM('cooker', 'delivery') NOT NULL,
+    worker_type ENUM('cook', 'delivery') NOT NULL,
     store_id INT NOT NULL ,
     FOREIGN KEY (store_id) REFERENCES store(store_id)
 );
@@ -65,9 +65,10 @@ CREATE TABLE user_order
     shipping_method ENUM('delivery', 'at_store'),
     worker_id INT,
     store_id INT NOT NULL,
-    FOREIGN KEY (store_id) REFERENCES store(store_id),
+    deliveried_at DATETIME,
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    FOREIGN KEY (worker_id) REFERENCES worker(worker_id)
+    FOREIGN KEY (worker_id) REFERENCES worker(worker_id),
+    FOREIGN KEY (store_id) REFERENCES store(store_id)
 );
 
 CREATE TABLE product
