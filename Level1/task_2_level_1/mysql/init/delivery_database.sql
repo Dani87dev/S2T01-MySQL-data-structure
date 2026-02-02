@@ -38,7 +38,7 @@ CREATE TABLE customer
 CREATE TABLE store
 (
     store_id INT PRIMARY KEY,
-    adress VARCHAR(45),
+    address VARCHAR(45),
     zip_code VARCHAR(45),
     town_id INT NOT NULL,
     FOREIGN KEY (town_id) REFERENCES town(town_id)

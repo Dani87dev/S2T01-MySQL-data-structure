@@ -9,13 +9,13 @@ services:
 
       MYSQL_ROOT_PASSWORD: admin
 
-      MYSQL_DATABASE: pizzeria_
+      MYSQL_DATABASE: delivery_ddbb
     ports:
       - "3306:3306"
     volumes:
 
       - ./mysql/init:/docker-entrypoint-initdb.d
-      - optica_data:/var/lib/mysql
+      - delivery_data:/var/lib/mysql
 
 volumes:
-  optica_data:
+  delivery_data:

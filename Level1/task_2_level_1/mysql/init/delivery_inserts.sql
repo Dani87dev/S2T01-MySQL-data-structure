@@ -17,7 +17,7 @@ VALUES (1, 'Joan', 'Garcia', 'Carrer Major 10', '08201', 1),
        (4, 'Anna', 'Serra', 'Carrer del Mar 2', '17300', 4);
 
 
-INSERT INTO store (store_id, adress, zip_code, town_id)
+INSERT INTO store (store_id, address, zip_code, town_id)
 VALUES (1, 'Carrer Central 1', '08202', 1),
        (2, 'Av. Estació 45', '17600', 3);
 
