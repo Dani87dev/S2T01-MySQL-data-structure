@@ -3,13 +3,13 @@ version: '3.8'
 services:
   db:
     image: mysql:8.0
-    container_name: mysql_optica
+    container_name: mysql_delivery_food
     restart: always
     environment:
 
       MYSQL_ROOT_PASSWORD: admin
 
-      MYSQL_DATABASE: optical_store
+      MYSQL_DATABASE: pizzeria_
     ports:
       - "3306:3306"
     volumes:
