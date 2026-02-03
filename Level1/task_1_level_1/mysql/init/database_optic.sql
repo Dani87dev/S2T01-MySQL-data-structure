@@ -1,6 +1,3 @@
--- noinspection SqlDialectInspection
-
-
 -- CREATE DATABASE optical_store;
 USE optical_store;
 
@@ -30,7 +27,7 @@ CREATE TABLE customers
     registration_date       DATE        NOT NULL,
     customer_recommended_id INT,
     FOREIGN KEY (address_id) REFERENCES address (address_id),
-    FOREIGN KEY (customer_recommended_id) REFERENCES customers(customers_id)
+    FOREIGN KEY (customer_recommended_id) REFERENCES customers (customers_id)
 );
 CREATE TABLE supplier
 (
@@ -40,27 +37,27 @@ CREATE TABLE supplier
     fax_number   BIGINT,
     nif          VARCHAR(10) NOT NULL,
     address_id   INT         NOT NULL,
-    FOREIGN KEY (address_id) REFERENCES address(address_id)
+    FOREIGN KEY (address_id) REFERENCES address (address_id)
 );
 CREATE TABLE brand
 (
     brand_id    INT PRIMARY KEY AUTO_INCREMENT,
     supplier_id INT         NOT NULL,
     name        VARCHAR(45) NOT NULL,
-    FOREIGN KEY (supplier_id) REFERENCES  supplier(supplier_id)
+    FOREIGN KEY (supplier_id) REFERENCES supplier (supplier_id)
 );
 CREATE TABLE glasses
 (
     glasses_id        INT PRIMARY KEY AUTO_INCREMENT,
-    graduation_left   DECIMAL(4, 2)                           NOT NULL,
-    graduation_right  DECIMAL(4, 2)                           NOT NULL,
+    graduation_left   DECIMAL(4, 2) NOT NULL,
+    graduation_right  DECIMAL(4, 2) NOT NULL,
     material_type     ENUM ('rimless', 'acetate', 'metallic') NOT NULL,
-    material_color    VARCHAR(45)                             NOT NULL,
-    glass_right_color VARCHAR(45)                             NOT NULL,
-    glass_left_color  VARCHAR(45)                             NOT NULL,
-    price             DECIMAL(6, 2)                           NOT NULL,
-    brand_id          INT                                     NOT NULL,
-    FOREIGN KEY (brand_id) REFERENCES brand(brand_id)
+    material_color    VARCHAR(45)   NOT NULL,
+    glass_right_color VARCHAR(45)   NOT NULL,
+    glass_left_color  VARCHAR(45)   NOT NULL,
+    price             DECIMAL(6, 2) NOT NULL,
+    brand_id          INT           NOT NULL,
+    FOREIGN KEY (brand_id) REFERENCES brand (brand_id)
 );
 CREATE TABLE sale
 (
@@ -69,7 +66,7 @@ CREATE TABLE sale
     glasses_id  INT NOT NULL,
     worker_id   INT NOT NULL,
     quantity    INT NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customers(customers_id),
-    FOREIGN KEY (glasses_id) REFERENCES glasses(glasses_id),
-    FOREIGN KEY (worker_id) REFERENCES worker(worker_id)
+    FOREIGN KEY (customer_id) REFERENCES customers (customers_id),
+    FOREIGN KEY (glasses_id) REFERENCES glasses (glasses_id),
+    FOREIGN KEY (worker_id) REFERENCES worker (worker_id)
 );

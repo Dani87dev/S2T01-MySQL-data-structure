@@ -1,7 +1,5 @@
-CREATE
-DATABASE wetube;
-USE
-wetube;
+-- CREATE DATABASE wetube;
+USE wetube;
 
 CREATE TABLE user
 (
