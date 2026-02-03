@@ -1,6 +1,6 @@
 USE wetube;
 
-INSERT INTO user (email, username, password, date_of_birth, gender, country, zip_code)
+INSERT INTO user_person (email, username, password, date_of_birth, gender, country, zip_code)
 VALUES ('joan@mail.com', 'joan99', 'pass123', '1999-05-15', 'male', 'Spain', '08001'),
        ('marta@mail.com', 'marta_dev', 'marta456', '1995-10-20', 'female', 'Spain', '08202'),
        ('alex@mail.com', 'alex_gamer', 'alex789', '2002-01-12', 'other', 'USA', '90210'),
@@ -33,4 +33,4 @@ INSERT INTO comment (text, posted_at, user_id, video_id)
 VALUES ('Molt bona recepta!', '2024-02-02 10:00:00', 2, 1),
        ('Quin pc més potent!', '2024-02-06 21:00:00', 1, 2),
        ('M\'encanta la sèrie', '2024-02-07 16:00:00', 4, 3),
-       ('Ganes de veure el següent', '2024-02-16 10:30:00',
+       ('Ganes de veure el següent', '2024-02-16 10:30:00', 5, 4);
