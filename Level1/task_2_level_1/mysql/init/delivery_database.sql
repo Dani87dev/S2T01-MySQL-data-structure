@@ -6,7 +6,7 @@ delivery_ddbb;
 
 CREATE TABLE category
 (
-    category_id INT PRIMARY KEY,
+    category_id INT PRIMARY KEY AUTO_INCREMENT,
     name        VARCHAR(45) NOT NULL
 );
 
@@ -18,7 +18,7 @@ CREATE TABLE province
 
 CREATE TABLE town
 (
-    town_id INT PRIMARY KEY,
+    town_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL,
     province_id INT NOT NULL,
     FOREIGN KEY (province_id) REFERENCES province(province_id)
@@ -26,7 +26,7 @@ CREATE TABLE town
 
 CREATE TABLE customer
 (
-    customer_id INT PRIMARY KEY,
+    customer_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL ,
     surname VARCHAR(45) NOT NULL ,
     address VARCHAR(100) NOT NULL ,
@@ -37,16 +37,16 @@ CREATE TABLE customer
 
 CREATE TABLE store
 (
-    store_id INT PRIMARY KEY,
-    address VARCHAR(45),
-    zip_code VARCHAR(45),
+    store_id INT PRIMARY KEY AUTO_INCREMENT,
+    address VARCHAR(45) NOT NULL,
+    zip_code VARCHAR(45) NOT NULL,
     town_id INT NOT NULL,
     FOREIGN KEY (town_id) REFERENCES town(town_id)
 );
 
 CREATE TABLE worker
 (
-    worker_id INT PRIMARY KEY,
+    worker_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL ,
     surname VARCHAR(45) NOT NULL ,
     nif VARCHAR(15) NOT NULL ,
@@ -58,14 +58,14 @@ CREATE TABLE worker
 
 CREATE TABLE user_order
 (
-    user_order_id INT PRIMARY KEY,
+    user_order_id INT PRIMARY KEY AUTO_INCREMENT,
     customer_id INT NOT NULL,
     date_time_order DATETIME NOT NULL,
     total_price DECIMAL(5,2) NOT NULL,
-    shipping_method ENUM('delivery', 'at_store'),
+    shipping_method ENUM('delivery', 'at_store') NOT NULL,
     worker_id INT,
     store_id INT NOT NULL,
-    deliveried_at DATETIME,
+    delivered_at DATETIME,
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
     FOREIGN KEY (worker_id) REFERENCES worker(worker_id),
     FOREIGN KEY (store_id) REFERENCES store(store_id)
@@ -73,10 +73,10 @@ CREATE TABLE user_order
 
 CREATE TABLE product
 (
-    product_id INT PRIMARY KEY,
+    product_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    type ENUM('burguer', 'pizza', 'drink') NOT NULL,
+    type ENUM('burger', 'pizza', 'drink') NOT NULL,
     price DECIMAL(4,2) NOT NULL,
     image VARCHAR(100),
     category_id INT,
@@ -85,7 +85,7 @@ CREATE TABLE product
 
 CREATE TABLE order_products
 (
-    order_products_id INT PRIMARY KEY,
+    order_products_id INT PRIMARY KEY AUTO_INCREMENT,
     quantity INT NOT NULL,
     user_order_id INT NOT NULL,
     product_id INT NOT NULL,
