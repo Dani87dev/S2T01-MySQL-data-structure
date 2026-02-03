@@ -1,7 +1,7 @@
 -- CREATE DATABASE wetube;
 USE wetube;
 
-CREATE TABLE user
+CREATE TABLE user_person
 (
     user_id       INT PRIMARY KEY AUTO_INCREMENT,
     email         VARCHAR(45) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE video
     STATE        ENUM ('public', 'hide', 'private'),
     user_id      INT          NOT NULL,
     published_at DATETIME     NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (user_id)
+    FOREIGN KEY (user_id) REFERENCES user_person (user_id)
 );
 
 CREATE TABLE video_tag
@@ -50,7 +50,7 @@ CREATE TABLE video_likes
     video_id INT,
     vote     ENUM ('like', 'dislike') NOT NULL,
     voted_at DATETIME NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (user_id),
+    FOREIGN KEY (user_id) REFERENCES user_person (user_id),
     FOREIGN KEY (video_id) REFERENCES video (video_id),
     PRIMARY KEY (user_id, video_id)
 );
@@ -62,14 +62,14 @@ CREATE TABLE channel
     description VARCHAR(255) NOT NULL,
     created_at  DATETIME     NOT NULL,
     user_id     INT          NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (user_id)
+    FOREIGN KEY (user_id) REFERENCES user_person (user_id)
 );
 
 CREATE TABLE subscriptions
 (
     user_id    INT,
     channel_id INT,
-    FOREIGN KEY (user_id) REFERENCES user (user_id),
+    FOREIGN KEY (user_id) REFERENCES user_person (user_id),
     FOREIGN KEY (channel_id) REFERENCES channel (channel_id),
     PRIMARY KEY (user_id, channel_id)
 );
@@ -81,7 +81,7 @@ CREATE TABLE comment
     posted_at  DATETIME     NOT NULL,
     user_id    INT          NOT NULL,
     video_id   INT          NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (user_id),
+    FOREIGN KEY (user_id) REFERENCES user_person (user_id),
     FOREIGN KEY (video_id) REFERENCES video (video_id)
 );
 
@@ -91,7 +91,7 @@ CREATE TABLE comment_likes
     comment_id INT,
     vote       ENUM ('like', 'dislike') NOT NULL,
     vote_at    DATETIME NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (user_id),
+    FOREIGN KEY (user_id) REFERENCES user_person (user_id),
     FOREIGN KEY (comment_id) REFERENCES comment (comment_id),
     PRIMARY KEY (user_id, comment_id)
 );
@@ -103,7 +103,7 @@ CREATE TABLE playlist
     created_at    DATETIME    NOT NULL,
     status        ENUM ('public', 'private') NOT NULL,
     user_id       INT         NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (user_id)
+    FOREIGN KEY (user_id) REFERENCES user_person (user_id)
 );
 
 CREATE TABLE playlist_videos
