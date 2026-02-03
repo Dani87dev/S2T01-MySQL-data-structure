@@ -6,12 +6,12 @@ USE optical_store;
 
 CREATE TABLE worker
 (
-    worker_id INT PRIMARY KEY,
+    worker_id INT PRIMARY KEY AUTO_INCREMENT,
     name      VARCHAR(45) NOT NULL
 );
 CREATE TABLE address
 (
-    address_id INT PRIMARY KEY,
+    address_id INT PRIMARY KEY AUTO_INCREMENT,
     street     VARCHAR(20) NOT NULL,
     number     INT         NOT NULL,
     floor      VARCHAR(20),
@@ -22,7 +22,7 @@ CREATE TABLE address
 );
 CREATE TABLE customers
 (
-    customers_id            INT PRIMARY KEY,
+    customers_id            INT PRIMARY KEY AUTO_INCREMENT,
     name                    VARCHAR(45) NOT NULL,
     address_id              INT         NOT NULL,
     phone_number            BIGINT      NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE customers
 );
 CREATE TABLE supplier
 (
-    supplier_id  INT PRIMARY KEY,
+    supplier_id  INT PRIMARY KEY AUTO_INCREMENT,
     name         VARCHAR(45) NOT NULL,
     phone_number BIGINT      NOT NULL,
     fax_number   BIGINT,
@@ -44,14 +44,14 @@ CREATE TABLE supplier
 );
 CREATE TABLE brand
 (
-    brand_id    INT PRIMARY KEY,
+    brand_id    INT PRIMARY KEY AUTO_INCREMENT,
     supplier_id INT         NOT NULL,
     name        VARCHAR(45) NOT NULL,
     FOREIGN KEY (supplier_id) REFERENCES  supplier(supplier_id)
 );
 CREATE TABLE glasses
 (
-    glasses_id        INT PRIMARY KEY,
+    glasses_id        INT PRIMARY KEY AUTO_INCREMENT,
     graduation_left   DECIMAL(4, 2)                           NOT NULL,
     graduation_right  DECIMAL(4, 2)                           NOT NULL,
     material_type     ENUM ('rimless', 'acetate', 'metallic') NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE glasses
 );
 CREATE TABLE sale
 (
-    sale_id     INT PRIMARY KEY,
+    sale_id     INT PRIMARY KEY AUTO_INCREMENT,
     customer_id INT NOT NULL,
     glasses_id  INT NOT NULL,
     worker_id   INT NOT NULL,
