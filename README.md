@@ -1,9 +1,10 @@
 # S2T01: MySQL Data Structure
 
-This project focuses on designing and implementing relational databases for various business scenarios. The primary goal is to master Data Normalization, Entity-Relationship (EER) modeling, and Referential Integrity.
 
----
- 
+This project focuses on designing and implementing relational databases for various business scenarios. The primary goal is to master Data Normalization, Entity-Relationship (EER) modeling, and Referential Integrity.
+<br><br>
+<br>
+
 ## 📂 TASK 1 - LEVEL 1: Optician's System (Cul d'Ampolla)
 
 Database design for an optical store to manage sales, inventory, and referrals:
