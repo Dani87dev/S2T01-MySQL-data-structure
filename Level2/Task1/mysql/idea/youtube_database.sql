@@ -1,18 +1,18 @@
 CREATE
-    DATABASE wetube;
+DATABASE wetube;
 USE
-    wetube;
+wetube;
 
 CREATE TABLE user
 (
     user_id       INT PRIMARY KEY AUTO_INCREMENT,
-    email         VARCHAR(45)                      NOT NULL,
-    username      VARCHAR(45)                      NOT NULL,
-    password      VARCHAR(20)                      NOT NULL,
-    date_of_birth DATE                             NOT NULL,
+    email         VARCHAR(45) NOT NULL,
+    username      VARCHAR(45) NOT NULL,
+    password      VARCHAR(20) NOT NULL,
+    date_of_birth DATE        NOT NULL,
     gender        ENUM ('male', 'female', 'other') NOT NULL,
-    country       VARCHAR(45)                      NOT NULL,
-    zip_code      VARCHAR(45)                      NOT NULL
+    country       VARCHAR(45) NOT NULL,
+    zip_code      VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE tag
@@ -23,17 +23,17 @@ CREATE TABLE tag
 
 CREATE TABLE video
 (
-    video_id       INT PRIMARY KEY AUTO_INCREMENT,
-    title          VARCHAR(45)  NOT NULL,
-    description    VARCHAR(255),
-    max_size       INT          NOT NULL,
-    file_name      VARCHAR(255) NOT NULL,
-    length         TIME         NOT NULL,
-    THUMBNAIL      VARCHAR(255) NOT NULL,
-    views          INT,
-    STATE          ENUM ('public', 'hide', 'private'),
-    user_id        INT          NOT NULL,
-    published_at   DATETIME     NOT NULL,
+    video_id     INT PRIMARY KEY AUTO_INCREMENT,
+    title        VARCHAR(45)  NOT NULL,
+    description  VARCHAR(255),
+    max_size     INT          NOT NULL,
+    file_name    VARCHAR(255) NOT NULL,
+    length       TIME         NOT NULL,
+    THUMBNAIL    VARCHAR(255) NOT NULL,
+    views        INT DEFAULT 0,
+    STATE        ENUM ('public', 'hide', 'private'),
+    user_id      INT          NOT NULL,
+    published_at DATETIME     NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (user_id)
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE video_likes
     user_id  INT,
     video_id INT,
     vote     ENUM ('like', 'dislike') NOT NULL,
-    voted_at DATETIME                 NOT NULL,
+    voted_at DATETIME NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (user_id),
     FOREIGN KEY (video_id) REFERENCES video (video_id),
     PRIMARY KEY (user_id, video_id)
@@ -78,11 +78,11 @@ CREATE TABLE subscriptions
 
 CREATE TABLE comment
 (
-    comment_id     INT PRIMARY KEY AUTO_INCREMENT,
-    text           VARCHAR(300) NOT NULL,
-    posted_at      DATETIME     NOT NULL,
-    user_id        INT          NOT NULL,
-    video_id       INT          NOT NULL,
+    comment_id INT PRIMARY KEY AUTO_INCREMENT,
+    text       VARCHAR(300) NOT NULL,
+    posted_at  DATETIME     NOT NULL,
+    user_id    INT          NOT NULL,
+    video_id   INT          NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (user_id),
     FOREIGN KEY (video_id) REFERENCES video (video_id)
 );
@@ -92,7 +92,7 @@ CREATE TABLE comment_likes
     user_id    INT,
     comment_id INT,
     vote       ENUM ('like', 'dislike') NOT NULL,
-    vote_at    DATETIME                 NOT NULL,
+    vote_at    DATETIME NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (user_id),
     FOREIGN KEY (comment_id) REFERENCES comment (comment_id),
     PRIMARY KEY (user_id, comment_id)
@@ -101,10 +101,10 @@ CREATE TABLE comment_likes
 CREATE TABLE playlist
 (
     playlist_id   INT PRIMARY KEY AUTO_INCREMENT,
-    playlist_name VARCHAR(45)                NOT NULL,
-    created_at    DATETIME                   NOT NULL,
+    playlist_name VARCHAR(45) NOT NULL,
+    created_at    DATETIME    NOT NULL,
     status        ENUM ('public', 'private') NOT NULL,
-    user_id       INT                        NOT NULL,
+    user_id       INT         NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (user_id)
 );
 
