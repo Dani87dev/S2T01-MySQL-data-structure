@@ -1,7 +1,7 @@
 -- noinspection SqlDialectInspection
 
 
-CREATE DATABASE optical_store;
+-- CREATE DATABASE optical_store;
 USE optical_store;
 
 CREATE TABLE worker
